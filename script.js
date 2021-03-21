@@ -1,6 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-console.log(generateBtn);
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
@@ -22,17 +22,22 @@ function generatePassword(){
 var numbers = "0123456789";
 var lowercasechars = "abcdefghijklmnopqrstuvwxyz";
 var uppercasechars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var signchars = "!@#$^&*()_+?<>:{}[]";
+var signchars = "!#$%&'()*+,-./:;<=>?@[^_`]{|}~\ ";
 var chars = '';
+var passwd = '';
 
 var passwordlength = prompt("Please enter the length of your password \n *************Password Length  Criteria************ \n Should contain atleast 8 characters and maximum 128 characters");
 
 //Validation for password length
-if (passwordlength === null || passwordlength == '' || parseInt(passwordlength) < 8 || parseInt(passwordlength) > 128){
+
+if (passwordlength === null){}//When user clicks cancel:Do nothing
+
+else if (passwordlength == '' || parseInt(passwordlength) < 8 || parseInt(passwordlength) > 128){
   alert("Invalid Password Length \nPlease follow password length criteria");
 }
 
-//Allow users which character types to include in their password
+
+//Allow users to include character types in their password
 else{
 
   var lowercaseanswer = confirm("Do you want lowercase characters in your password?");
@@ -56,8 +61,7 @@ else{
   }
 
   if (chars != ''){
-  var passwd = '';
-console.log(passwd);
+  
   //Generates random password with given passwordlength
   for (var i=0; i<passwordlength; i++){
     var randomnum = Math.floor(Math.random() * chars.length);
@@ -66,7 +70,7 @@ console.log(passwd);
   }
   }
   else{
-    alert("Please select atleat one character types");
+    alert("************** Invalid Charater types selection ***************** \nPlease select atleat one character types");
   }
 
   }
