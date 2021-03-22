@@ -16,23 +16,42 @@ function writePassword() {
 }
 
 
+// Function shufflechars to shuffle all the character types in char_shuffle inorder to increase randomness selection of character types
+function shufflechars(Char_shuffle){
+  
+Char_shuffle = Char_shuffle.split('');
+var n = Char_shuffle.length;
+for (var i = n-1; i>0; i--)
+{
+  var j = Math.floor(Math.random() * (i+1));
+  var tmp = Char_shuffle[i];
+  Char_shuffle[i] = Char_shuffle[j];
+  Char_shuffle[j] = tmp;
+}
+
+return Char_shuffle.join("");
+
+}
+
 //Checks userinput and validate password criteria and returns a random secure password for user
 function generatePassword(){
 
 var numbers = "0123456789";
 var lowercasechars = "abcdefghijklmnopqrstuvwxyz";
 var uppercasechars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var signchars = "!#$%&'()*+,-./:;<=>?@[^_`]{|}~\ ";
+var signchars = "!#$%&'()*+,-.\/:;<=>?@[^_`]{|}~";
 var chars = '';
 var passwd = '';
 
-var passwordlength = prompt("Please enter the length of your password \n *************Password Length  Criteria************ \n Should contain atleast 8 characters and maximum 128 characters");
+var passwordlength = prompt("Please enter the length of your password \n *************Password Length  Criteria************ \n A passwor must contain atleast 8 character or 128 at maximun \n Pasword length must be equal to or inbetween 8 and 128");
 
 //Validation for password length
 
+
 if (passwordlength === null){}//When user clicks cancel:Do nothing
 
-else if (passwordlength == '' || parseInt(passwordlength) < 8 || parseInt(passwordlength) > 128){
+// Check whether the input for passwordlength is a number and that falls inside a password criteria
+else if (isNaN(parseInt(passwordlength)) ||  passwordlength == '' || parseInt(passwordlength) < 8 || parseInt(passwordlength) > 128){
   alert("Invalid Password Length \nPlease follow password length criteria");
 }
 
@@ -61,12 +80,13 @@ else{
   }
 
   if (chars != ''){
+  chars = shufflechars(chars);
   
   //Generates random password with given passwordlength
   for (var i=0; i<passwordlength; i++){
     var randomnum = Math.floor(Math.random() * chars.length);
     passwd += chars.substring(randomnum,randomnum+1);
-    
+   
   }
   }
   else{
