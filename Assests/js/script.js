@@ -47,11 +47,12 @@ var passwordlength = prompt("Please enter the length of your password \n *******
 
 //Validation for password length
 
-
+console.log(isNaN(parseInt(passwordlength)));
 if (passwordlength === null){}//When user clicks cancel:Do nothing
 
 // Check whether the input for passwordlength is a number and that falls inside a password criteria
-else if (isNaN(parseInt(passwordlength)) ||  passwordlength == '' || parseInt(passwordlength) < 8 || parseInt(passwordlength) > 128){
+// Validation for any spacekey entered added using function isNaN
+else if (isNaN(parseInt(passwordlength)) || parseInt(passwordlength) < 8 || parseInt(passwordlength) > 128){
   alert("Invalid Password Length \nPlease follow password length criteria");
 }
 
